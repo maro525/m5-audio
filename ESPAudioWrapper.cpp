@@ -19,12 +19,12 @@ void Audio::initSpeaker() {
 }
 
 // not working yet
-void Audio::begin(const void *data, uint32_t len) {
-  file = new AudioFileSourcePROGMEM(data, len);
-  wav = new AudioGeneratorWAV();
-  bool flag = wav->begin(file, i2s);
-  Serial.println(flag);
-}
+// void Audio::begin(const void *data, uint32_t len) {
+//   file = new AudioFileSourcePROGMEM(data, len);
+//   wav = new AudioGeneratorWAV();
+//   bool flag = wav->begin(file, i2s);
+//   Serial.println(flag);
+// }
 
 void Audio::record() {
 }

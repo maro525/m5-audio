@@ -1,5 +1,4 @@
 #include "I2S.h"
-#define SAMPLE_RATE (16000)
 //#define PIN_I2S_BCLK 26
 //#define PIN_I2S_LRC 22
 //#define PIN_I2S_DIN 34
@@ -9,7 +8,6 @@
 #define PIN_I2S_DIN 17
 #define PIN_I2S_DOUT -1
 
-// ATOM Echo関連 start
 #define CONFIG_I2S_BCK_PIN 19
 #define CONFIG_I2S_LRCK_PIN 33
 #define CONFIG_I2S_DATA_PIN 22
@@ -69,7 +67,7 @@ void I2S::initMic() {
   else if (micType == M5GO || micType == M5STACKFIRE ) {
     i2s_config_t i2s_config = {
       .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX | I2S_MODE_TX | I2S_MODE_DAC_BUILT_IN | I2S_MODE_ADC_BUILT_IN),
-      .sample_rate = SAMPLE_RATE,
+      .sample_rate = 16000,
       .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
       .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
       .communication_format = (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S_MSB),
@@ -79,13 +77,13 @@ void I2S::initMic() {
     };
     i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
     i2s_set_adc_mode(ADC_UNIT_1, ADC1_CHANNEL_6);
-    i2s_set_clk(I2S_NUM_0, SAMPLE_RATE, I2S_BITS_PER_SAMPLE_16BIT, I2S_CHANNEL_STEREO);
+    i2s_set_clk(I2S_NUM_0, 16000, I2S_BITS_PER_SAMPLE_16BIT, I2S_CHANNEL_STEREO);
     i2s_adc_enable(I2S_NUM_0);
   }
   else if (micType == ADMP441 || micType == ICS43434 || micType == SPH0645LM4H) {
     i2s_config_t i2s_config = {
       .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
-      .sample_rate = SAMPLE_RATE,
+      .sample_rate = 16000,
       .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
       .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
       .communication_format = (i2s_comm_format_t)(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_MSB),
@@ -100,7 +98,7 @@ void I2S::initMic() {
     pin_config.data_in_num = PIN_I2S_DIN;
     i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
     i2s_set_pin(I2S_NUM_0, &pin_config);
-    i2s_set_clk(I2S_NUM_0, SAMPLE_RATE, I2S_BITS_PER_SAMPLE_16BIT, I2S_CHANNEL_STEREO);
+    i2s_set_clk(I2S_NUM_0, 16000, I2S_BITS_PER_SAMPLE_16BIT, I2S_CHANNEL_STEREO);
   }  
 }
 

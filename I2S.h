@@ -13,7 +13,8 @@ enum MicType {
   M5ATOM_ECHO
 };
 
-class I2S : public AudioOutput{
+//class I2S : public AudioOutput{
+class I2S {
   MicType micType;
 public:
   I2S(MicType micType);

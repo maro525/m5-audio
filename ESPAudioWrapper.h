@@ -17,7 +17,9 @@ public:
   ~Audio();
   void initMic();
   void initSpeaker();
-  void begin(const void *data, uint32_t len);
+  // void SetGain(float f){ i2s->SetGain(f); };
+  void SetGain(float f){ Serial.println(f); };
+  // void begin(const void *data, uint32_t len);
   void record();
   void playRecorded();
   void playWaveBuf(const unsigned char audio_data[], const size_t numData);
